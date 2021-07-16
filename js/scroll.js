@@ -5,24 +5,27 @@ let scrollLeft;
 slider_cont.forEach(data=>{
 data.addEventListener('mouseup',()=>{
     isDown=false;
+    data.style.cursor='initial';
 });
 data.addEventListener('mousedown',(e)=>{
-    console.log(e);
     startX=e.pageX-data.offsetLeft;
-    console.log(startX);
     isDown=true;
     scrollLeft=data.scrollLeft;
+    data.style.cursor='initial';
     // console.log({x,startX});
 })
 data.addEventListener('mouseleave',()=>{
     isDown=false;
+    data.style.cursor='initial';
 })
 data.addEventListener('mousemove',(e)=>{
     if(!isDown) return;
     e.preventDefault();
     const x=e.pageX-data.offsetLeft;
-    const walk=(x-startX)*2;
+    const walk=(x-startX)*1;
     data.scrollLeft=scrollLeft-walk;
+    console.log(data.scrollLeft,data.scrollWidth,data.offsetWidth);
+    data.style.cursor='grabbing';
 })
 data.addEventListener('touchstart',(e)=>{
     startX=e.touches[0].pageX-data.offsetLeft;
@@ -38,7 +41,6 @@ data.addEventListener('touchleave',()=>{
 data.addEventListener('touchmove',(e)=>{
     if(!isDown) return;
     const x=e.touches[0].pageX-data.offsetLeft;
-    console.log({x,startX});
     const walk=(Math.ceil(x)-startX);
     data.scrollLeft=scrollLeft-walk;
 })
@@ -54,9 +56,8 @@ arrow_cont.forEach((arrow,index)=>{
     data.forEach((d,i)=>{
         d.addEventListener('click',
         (e)=>{
-            console.log(e);
-            console.log(i);
-            (i===1)?slider_cont[index].scrollLeft+=100:slider_cont[index].scrollLeft-=100;
+            const j=slider_cont[index];
+            (i===1)?(j.scrollLeft=j.scrollLeft-(j.scrollLeft%332)+332):(j.scrollLeft%332?j.scrollLeft=j.scrollLeft-(j.scrollLeft%332):j.scrollLeft=j.scrollLeft-(j.scrollLeft%332)-332);
         })
     })
 })

@@ -100,9 +100,9 @@ nav {
   display: flex;
   overflow: hidden;
 }
-.pop-movies-cont:hover{
+/* .pop-movies-cont:hover{
   cursor: grab;
-}
+} */
 .movies-card{
   display: flex;
   flex-direction: column;
@@ -114,11 +114,12 @@ nav {
   border-radius: 1.9rem;
   position: relative;
   margin: 1rem;
+  /* cursor: pointer; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-.movies-card:hover{
+/* .movies-card:hover{
   cursor: pointer;
-}
+} */
 .movies-card img{
   height: 350px;
   border-radius: 2rem 2rem 5px 5px;
