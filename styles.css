@@ -100,6 +100,9 @@ nav {
   display: flex;
   overflow: hidden;
 }
+.pop-movies-cont:hover{
+  cursor: grab;
+}
 .movies-card{
   display: flex;
   flex-direction: column;
@@ -112,6 +115,9 @@ nav {
   position: relative;
   margin: 1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.movies-card:hover{
+  cursor: pointer;
 }
 .movies-card img{
   height: 350px;
@@ -147,11 +153,21 @@ nav {
   border-radius: 20px;
   font-size: 1.2rem;
 }
+.arrow-cont{
+  background-color:transparent;
+  width: 100px;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+.arrow-cont img{
+  width: 20px;
+}
 .pop-movies-heading{
   color: var(--yellow);
   text-align: center;
   width: 80%;
-  margin: 0.5rem auto;
+  margin: 1.5rem auto;
   padding: 1rem;
   border-radius: 5rem;
   border: 1px dotted var(--green);
