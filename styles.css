@@ -15,7 +15,10 @@ body,
   /* Internet Explorer 10-11 */
   color: black;
 }
-
+a{
+  text-decoration: none;
+  color: black;
+}
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: black;
@@ -51,6 +54,7 @@ nav {
   width: 400px;
   height: auto;
   margin: 1rem;
+  cursor: pointer;
 }
 .search-main-cont{
   display: flex;

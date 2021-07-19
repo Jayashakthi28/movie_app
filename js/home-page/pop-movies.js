@@ -8,10 +8,8 @@ async function genre_fetcher(id, index,text) {
   const data = await fetch(url);
   const result = [];
   const response = await data.json();
-  console.log(response);
   result.push(...response.results);
   let card = "";
-  console.log(result);
   result.forEach((d) => {
     card += `<div class="movies-card">
     <img
@@ -28,6 +26,19 @@ async function genre_fetcher(id, index,text) {
   </div>`;
   });
   main_cont[index].innerHTML = card;
+  updater_1();
+}
+function updater_1(){
+const button_redirect=document.querySelectorAll('.hidden-mov-det button');
+console.log(button_redirect);
+button_redirect.forEach(d=>{
+  console.log(d);
+  d.addEventListener('click',(e)=>{
+    console.log(e);
+    console.log('hello');
+    window.location=`./movie-det.html?id=${d.dataset.id}`;
+  })
+});
 }
 // async function data_updater(id, index) {
 //   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=6c62b994f70846dd9201f6a1f089125e`;

@@ -1,0 +1,296 @@
+@import url(./styles.css);
+:root{
+    --pink-light:#f17995;
+    --green:#06D6A0;
+    --dark-blue:#073b4c;
+    --blue:#118AB2;
+    --yellow:#FFD166;
+  }
+/* .main-det-cont{
+    display: flex;
+    background-color: var(--yellow);
+    border-radius: 1rem;
+    width: 80%;
+    margin: 2rem auto;
+}
+.main-det-cont img{
+    width: 500px;
+    max-width: 50%;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+.movie-det-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+    margin: auto;
+    font-size: 1.5rem;
+    padding: 2rem;
+} */
+nav{
+    background-color: #233a34a4;
+}
+.main-det-cont{
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.wrapper-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: fit-content;
+    width: 30%;
+}
+.wrapper-2>*{
+    margin: 0.5rem;
+}
+.mini-det-cont>*{
+    margin: 0rem 0.5rem;
+}
+.main-det-cont .logo-cont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.logo-cont img{
+    width: clamp(100px,20vw,200px);
+}
+.big-movie-title{
+    display: flex;
+    flex-wrap: wrap;
+}
+.big-movie-title h1{
+    font-size: clamp(1.5rem,5vw,3rem);
+}
+.nav-elements{
+    width: 100%;
+    padding:1rem;
+    display:flex;
+    justify-content: space-between;
+    background-color: #06d69eb3;
+}
+.mini-det-cont{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+.overview-cont{
+    font-size: 1rem;
+    height: 100px;
+    overflow: auto;
+}
+.no-video-found{
+    font-size: clamp(1.5rem,50vw,2rem);
+    display: flex;
+    align-items: center;
+    color: var(--green);
+    text-align: center;
+}
+.heading-cont{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+.rating-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.rating-cont img{
+    width: clamp(25px,5vw,50px);
+}
+.heading-cont h2{
+    color: var(--green);
+    cursor: pointer;
+}
+.heading-cont h2:nth-child(1){
+    color: var(--yellow);
+}
+.heading-cont h2:hover{
+    color: var(--yellow);
+}
+.video-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: display 1s ease;
+    height: 500px;
+    width: auto;
+    overflow: auto;
+}
+.video-cont iframe{
+    width: 440px;
+    margin: 1rem;
+}
+.poster-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: none;
+    transition: display 1s ease;
+    height: 500px;
+    width: auto;
+    overflow: auto;
+}
+.poster-cont img{
+    width: 300px;
+    margin: 0.4rem;
+}
+.production-comp-logo-cont img{
+    width: clamp(100px,25vw,300px);
+}
+.mini-wrap{
+    width: 100%;
+    display: flex;
+}
+.mini-wrap>*{
+    margin: 0.5rem;
+}
+.main-content-cont{
+    height: fit-content;
+    min-height: 70vh;
+    background-color: #06D6A0;
+    padding: 1rem;
+    display: flex;
+}
+.hl{
+    margin-right: 1rem;
+}
+
+.movie-list{
+    font-size: clamp(1rem,5vw,1.5rem);
+    margin: 0.5rem 0;
+}
+.main-content-cont-poster{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+}
+.main-content-cont-wrap{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.main-content-cont-poster img{
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.backdrop-cont{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-color: #06D6A0;
+    pointer-events: none;
+    opacity: 0.2;
+    mix-blend-mode: darken;
+    z-index: 0;
+    display: none;
+    /* background: url(https://image.tmdb.org/t/p/original//gX5UrH1TLVVBwI7WxplW43BD6Z1.jpg); */
+}
+.backdrop-cont1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-color: #06D6A0;
+    pointer-events: none;
+    opacity: 0.2;
+    z-index: 0;
+}
+.backdrop-cont img{
+    width: auto;
+    height: 100%;
+}
+.backdrop-cont1 img{
+    width: 100%;
+    mix-blend-mode:luminosity;
+}
+.movie-content-cont-details-cont{
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 80%;
+    z-index: 1;
+    border-radius: 0.5rem;
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.production-logo-cont{
+    max-height: fit-content;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: space-evenly;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+.production-logo-cont img{
+    height: 25px;
+}
+@media (max-width:543px){
+    .mini-det-cont{
+        flex-direction: column;
+    }
+    .mini-det-cont>*{
+        margin: 0.2rem;
+    }
+    .wrapper-2{
+        flex-direction: column;
+    }
+}
+@media (max-width:832px){
+    .main-content-cont{
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-content-cont-poster{
+        width: 70%;
+    }
+    .main-content-cont-wrap{
+        width: 100%;
+    }
+    .backdrop-cont{
+        display: flex;
+    }
+    .backdrop-cont1{
+        display: none;
+    }
+}
+@media(max-width:608px){
+    .production-logo-cont{
+        flex-direction: column;
+    }
+    .production-logo-cont >*{
+        margin: 0.5rem;
+    }
+}
