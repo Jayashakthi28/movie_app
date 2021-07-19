@@ -53,7 +53,7 @@ async function posters_url_fetcher() {
   const response = await data.json();
   // console.log(response);
   main_data["backdrops"] = response.backdrops;
-  main_data["logo"] = response.logos[0];
+  main_data["logo"] = response.logos[0] || '';
   main_data["posters"] = response.posters;
   main_data["images"] = response.backdrops.concat(response.posters);
 }

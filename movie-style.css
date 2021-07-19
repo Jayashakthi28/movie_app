@@ -73,6 +73,7 @@ nav{
     display:flex;
     justify-content: space-between;
     background-color: #06d69eb3;
+    overflow-x: auto;
 }
 .mini-det-cont{
     display: flex;
