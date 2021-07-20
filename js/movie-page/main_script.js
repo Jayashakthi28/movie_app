@@ -22,7 +22,6 @@ async function common_det_fetcher() {
   const data = await fetch(common_det_url);
   const response = await data.json();
   main_data["title"] = response.original_title;
-  console.log(response);
   response.status === "Released"
     ? ((main_data["status"] = true),
       (main_data["runtime"] = response.runtime),
@@ -37,8 +36,6 @@ async function common_det_fetcher() {
       production_logo.push(d.logo_path);
     }
   });
-  //   console.log(production_text);
-  //   console.log(production_logo);
   main_data["production_text"] = production_text;
   main_data["production_logo"] = production_logo;
   main_data["overview"] = response.overview;
@@ -51,8 +48,7 @@ async function common_det_fetcher() {
 async function posters_url_fetcher() {
   const data = await fetch(posters_url);
   const response = await data.json();
-  // console.log(response);
-  main_data["backdrops"] = response.backdrops;
+  main_data["backdrops"] = response.backdrops || './assets/522.jpg';
   main_data["logo"] = response.logos[0] || '';
   main_data["posters"] = response.posters;
   main_data["images"] = response.backdrops.concat(response.posters);
@@ -68,7 +64,6 @@ async function videos_url_fetcher() {
   production_logo_cont.innerHTML = "";
   const data = await fetch(videos_url);
   const response = await data.json();
-  // console.log(response);
   const url = [];
   response.results.forEach((d) => {
     if (d.site === "YouTube") {
@@ -143,9 +138,9 @@ function nav_elements_updater() {
     });
   }
   production_logo_cont.innerHTML = temp;
-  poster_cont.src = `https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}`;
-  backdrop_cont.src = `https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`;
-  backdrop_cont1.src = `https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`;
+  poster_cont.src = (`https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}` )|| (`./assets/522.jpg`);
+  backdrop_cont.src = (main_data.backdrops.length!==0)?(`https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`):(`./assets/522.jpg`);
+  backdrop_cont1.src = (main_data.backdrops.length!==0)?(`https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`):(`./assets/522.jpg`);
   temp = "";
   if (main_data.videos.length !== 0) {
     main_data.videos.forEach((d) => {
@@ -187,6 +182,7 @@ function nav_elements_updater() {
 }
 let count = 0;
 function imgUrlUpdate() {
+  if(main_data.backdrops.length!==0){
   const imgs = Array.from(document.querySelectorAll(".backdrop-cont-main img"));
   imgs.forEach((d) => {
     if (count >= main_data.backdrops.length) {
@@ -196,8 +192,10 @@ function imgUrlUpdate() {
     count++;
   });
 }
+}
 let cnt=0;
 function imgUrlUpdate1() {
+  if(main_data.backdrops.length!==0){
   const imgs = Array.from(document.querySelectorAll(".main-content-cont-poster img"));
   imgs.forEach((d) => {
     if (cnt >= main_data.posters.length) {
@@ -207,6 +205,7 @@ function imgUrlUpdate1() {
     cnt++;
   });
 }
+}
 const id_arr = [];
 async function recom_fetcher() {
   rel_movies_cont.innerHTML='';
@@ -214,8 +213,13 @@ async function recom_fetcher() {
   const result = [];
   const response = await data1.json();
   result.push(...response.results);
-  console.log(result);
   let card = "";
+  if(result.length===0){
+      rel_movies_cont.style.display='none';
+      Array.from(document.querySelectorAll('.arrow-cont'))[1].style.display='none';
+      Array.from(document.querySelectorAll('.pop-movies-heading'))[1].style.display='none';    
+  }
+  else{
   result.forEach(d => {
     card += `<div class="movies-card">
     <img
@@ -233,6 +237,7 @@ async function recom_fetcher() {
   });
   rel_movies_cont.innerHTML=card;
 }
+}
 async function caller(){
 await common_det_fetcher();
 await posters_url_fetcher();
@@ -249,7 +254,6 @@ setInterval(imgUrlUpdate, 7000);
 setInterval(imgUrlUpdate1,7000);
 
 function updater_1(button_redirect){
-  console.log(button_redirect);
 button_redirect.forEach(d=>{
   d.addEventListener('click',(e)=>{
     window.location=`./movie-det.html?id=${d.dataset.id}`;

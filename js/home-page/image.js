@@ -9,7 +9,6 @@ const img_arr = fetch(url)
     img_urls();
     imgUrlUpdate();
   });
-  console.log(arr);
 function img_urls(){
     url_arr.push(...arr.map(data=>{return `https://image.tmdb.org/t/p/original${data.poster_path}`}));
     poster_id_arr.push(...arr.map(data=>{return data.id}));    

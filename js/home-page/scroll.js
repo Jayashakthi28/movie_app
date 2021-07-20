@@ -12,7 +12,6 @@ data.addEventListener('mousedown',(e)=>{
     isDown=true;
     scrollLeft=data.scrollLeft;
     data.style.cursor='initial';
-    // console.log({x,startX});
 })
 data.addEventListener('mouseleave',()=>{
     isDown=false;
@@ -24,7 +23,6 @@ data.addEventListener('mousemove',(e)=>{
     const x=e.pageX-data.offsetLeft;
     const walk=(x-startX)*1;
     data.scrollLeft=scrollLeft-walk;
-    console.log(data.scrollLeft,data.scrollWidth,data.offsetWidth);
     data.style.cursor='grabbing';
 })
 data.addEventListener('touchstart',(e)=>{

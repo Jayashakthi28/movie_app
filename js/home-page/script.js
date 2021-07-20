@@ -5,7 +5,6 @@ const close_btn=document.querySelector('.close-btn');
 const suggestion=document.querySelector('.suggestions-cont ul');
 let li_ele=document.querySelectorAll('ul li');
 search_btn.addEventListener('click',function(){
-    console.log("Hello");
     search_cont.classList.add('search-cont-active');
     input_search.classList.add('input-active');
     search_cont.classList.add('search-cont-active');
@@ -23,11 +22,9 @@ input_search.addEventListener('keyup',async ()=>{
     suggestion.innerHTML='';
     li_url_update();
     if(input_search.value != null){
-        console.log(input_search.value);
         const url=`https://api.themoviedb.org/3/search/movie?api_key=6c62b994f70846dd9201f6a1f089125e&query=${input_search.value}&page=1`;
         const data=await fetch(url);
         const response = await data.json();
-        console.log(response);
         let temp='';
         response.results.forEach(d => {
             temp+=`<li data-id=${d.id}>${d.title}</li>`
@@ -39,11 +36,9 @@ input_search.addEventListener('keyup',async ()=>{
 // input_search.addEventListener('change',async ()=>{
 //     suggestion.innerHTML='';
 //     if(input_search.value != null){
-//         console.log(input_search.value);
 //         const url=`https://api.themoviedb.org/3/search/movie?api_key=6c62b994f70846dd9201f6a1f089125e&query=${input_search.value}&page=1`;
 //         const data=await fetch(url);
 //         const response = await data.json();
-//         console.log(response);
 //         let temp='';
 //         response.results.forEach(d => {
 //             temp+=`<li data-id=${d.id}>${d.title}</li>`
@@ -52,7 +47,6 @@ input_search.addEventListener('keyup',async ()=>{
 //         // li_ele=document.querySelectorAll('ul li');
 //     }
 // });
-console.log(li_ele);
 function li_url_update(){
 li_ele.forEach(d => {
     d.addEventListener('click',(e)=>{

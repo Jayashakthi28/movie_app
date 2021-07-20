@@ -30,7 +30,6 @@ async function genre_fetcher(id, index,text) {
   await updater_2(document.querySelectorAll('.main_poster'));
 }
 function updater_1(button_redirect){
-  console.log(button_redirect);
 button_redirect.forEach(d=>{
   d.addEventListener('click',(e)=>{
     window.location=`./movie-det.html?id=${d.dataset.id}`;
@@ -49,7 +48,6 @@ function updater_2(button_redirect){
 //   const data = await fetch(url);
 //   const response = await data.json();
 //   const result = [];
-//   console.log(response);
 //    ` <div class="movies-card">
 //         <img
 //           src="https://image.tmdb.org/t/p/original/${response.backdrop_path}"
