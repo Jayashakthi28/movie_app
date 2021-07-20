@@ -26,19 +26,23 @@ async function genre_fetcher(id, index,text) {
   </div>`;
   });
   main_cont[index].innerHTML = card;
-  updater_1();
+  await updater_1( document.querySelectorAll('.hidden-mov-det button'));
+  await updater_2(document.querySelectorAll('.main_poster'));
 }
-function updater_1(){
-const button_redirect=document.querySelectorAll('.hidden-mov-det button');
-console.log(button_redirect);
+function updater_1(button_redirect){
+  console.log(button_redirect);
 button_redirect.forEach(d=>{
-  console.log(d);
   d.addEventListener('click',(e)=>{
-    console.log(e);
-    console.log('hello');
     window.location=`./movie-det.html?id=${d.dataset.id}`;
   })
 });
+}
+function updater_2(button_redirect){
+  button_redirect.forEach(d=>{
+    d.addEventListener('click',(e)=>{
+      window.location=`./movie-det.html?id=${d.dataset.id}`;
+    })
+  });
 }
 // async function data_updater(id, index) {
 //   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=6c62b994f70846dd9201f6a1f089125e`;
@@ -63,5 +67,5 @@ button_redirect.forEach(d=>{
 genre_fetcher(27, 0,'genres');
 genre_fetcher(16,1,'genres');
 genre_fetcher(80,2,'genres');
-genre_fetcher('ta',3,'original_language')
+genre_fetcher('ta',3,'original_language');
 // genre_fetcher(420,1,'companies');

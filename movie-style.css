@@ -226,6 +226,7 @@ nav{
 .backdrop-cont img{
     width: auto;
     height: 100%;
+    mix-blend-mode:luminosity;
 }
 .backdrop-cont1 img{
     width: 100%;
@@ -234,7 +235,7 @@ nav{
 .movie-content-cont-details-cont{
     padding: 1rem;
     margin: 1rem;
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: #06d69e2c;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -286,6 +287,9 @@ nav{
     .backdrop-cont1{
         display: none;
     }
+  .movie-content-cont-details-cont{
+      background-color: #06d69ee3;
+  }
 }
 @media(max-width:608px){
     .production-logo-cont{

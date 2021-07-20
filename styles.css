@@ -89,6 +89,39 @@ nav {
 .search-cont-active{
   width: clamp(250px, 5vw, 300px) !important;
 }
+.search-wrap{
+  position: relative;
+}
+.suggestions-cont{
+  z-index: 9999;
+  width:250px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.5rem;
+  background-color: #f17995;
+  margin-top: 0.5rem;
+}
+.suggestions-cont ul{
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  overflow: auto; 
+}
+.suggestions-none{
+  display: none;
+}
+.suggestions-cont ul li{
+  padding: 0.5rem;
+  margin: 1px 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--green);
+  background-color: #f17995;
+  cursor: pointer;
+}
 .input-active{
   width: 100% !important;
 }

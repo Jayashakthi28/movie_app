@@ -143,9 +143,9 @@ function nav_elements_updater() {
     });
   }
   production_logo_cont.innerHTML = temp;
-  poster_cont.src = `https://image.tmdb.org/t/p/original${main_data.posters[2].file_path}`;
-  backdrop_cont.src = `https://image.tmdb.org/t/p/original${main_data.posters[2].file_path}`;
-  backdrop_cont1.src = `https://image.tmdb.org/t/p/original${main_data.posters[2].file_path}`;
+  poster_cont.src = `https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}`;
+  backdrop_cont.src = `https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`;
+  backdrop_cont1.src = `https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`;
   temp = "";
   if (main_data.videos.length !== 0) {
     main_data.videos.forEach((d) => {
@@ -189,21 +189,22 @@ let count = 0;
 function imgUrlUpdate() {
   const imgs = Array.from(document.querySelectorAll(".backdrop-cont-main img"));
   imgs.forEach((d) => {
-    if (count === main_data.backdrops.length) {
+    if (count >= main_data.backdrops.length) {
       count = 0;
     }
     d.src = `https://image.tmdb.org/t/p/original/${main_data.backdrops[count].file_path}`;
     count++;
   });
 }
+let cnt=0;
 function imgUrlUpdate1() {
   const imgs = Array.from(document.querySelectorAll(".main-content-cont-poster img"));
   imgs.forEach((d) => {
-    if (count === main_data.posters.length) {
-      count = 0;
+    if (cnt >= main_data.posters.length) {
+      cnt = 0;
     }
-    d.src = `https://image.tmdb.org/t/p/original/${main_data.posters[count].file_path}`;
-    count++;
+    d.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
+    cnt++;
   });
 }
 const id_arr = [];
@@ -241,7 +242,17 @@ await recom_fetcher();
 nav_elements_updater();
 imgUrlUpdate();
 imgUrlUpdate1();
+updater_1( document.querySelectorAll('.hidden-mov-det button'));
 }
 caller();
 setInterval(imgUrlUpdate, 7000);
 setInterval(imgUrlUpdate1,7000);
+
+function updater_1(button_redirect){
+  console.log(button_redirect);
+button_redirect.forEach(d=>{
+  d.addEventListener('click',(e)=>{
+    window.location=`./movie-det.html?id=${d.dataset.id}`;
+  })
+});
+}
