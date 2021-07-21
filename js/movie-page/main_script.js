@@ -49,7 +49,10 @@ async function posters_url_fetcher() {
   const data = await fetch(posters_url);
   const response = await data.json();
   main_data["backdrops"] = response.backdrops || './assets/522.jpg';
-  main_data["logo"] = response.logos[0] || '';
+  main_data["logo"] = response.logos.find(z=>{
+    console.log(z);
+    return z.iso_639_1=="en";
+  }) || '';
   main_data["posters"] = response.posters;
   main_data["images"] = response.backdrops.concat(response.posters);
 }
