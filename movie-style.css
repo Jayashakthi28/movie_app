@@ -33,6 +33,10 @@ nav{
 .main-det-cont{
     display: flex;
     flex-direction: column;
+    background: url("https://image.tmdb.org/t/p/original/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .wrapper-1{
     display: flex;
@@ -72,8 +76,10 @@ nav{
     padding:1rem;
     display:flex;
     justify-content: space-between;
-    background-color: #06d69eb3;
+    background-color: #06d69e4b;
     overflow-x: auto;
+    background-color: rgba(0, 0, 0, 0.782);
+    color: var(--yellow);
 }
 .mini-det-cont{
     display: flex;
@@ -147,6 +153,8 @@ nav{
 }
 .production-comp-logo-cont img{
     width: clamp(100px,25vw,300px);
+
+    padding: 1px;
 }
 .mini-wrap{
     width: 100%;
@@ -158,8 +166,9 @@ nav{
 .main-content-cont{
     height: fit-content;
     min-height: 70vh;
-    background-color: #06D6A0;
+    /* background-color: #06D6A0; */
     padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.782);
     display: flex;
 }
 .hl{
@@ -235,15 +244,20 @@ nav{
 .movie-content-cont-details-cont{
     padding: 1rem;
     margin: 1rem;
-    background-color: #06d69e2c;
+    /* background-color: #06d69e2c; */
+    background-color: rgba(240, 248, 255, 0.042);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    color: var(--yellow);
     min-height: 80%;
     z-index: 1;
     border-radius: 0.5rem;
     overflow: auto;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.movie-content-cont-details-cont .hl{
+    color: var(--blue);
 }
 .production-logo-cont{
     max-height: fit-content;
@@ -255,9 +269,14 @@ nav{
     align-items: center;
     font-weight: bolder;
     font-size: 1rem;
+    color: var(--blue);
+    background-color: rgba(240, 248, 255, 0.042);
 }
 .production-logo-cont img{
     height: 25px;
+    border-radius: 1px;
+    padding: 1px;
+    background-color: #ffffff31;
 }
 @media (max-width:543px){
     .mini-det-cont{
@@ -287,9 +306,9 @@ nav{
     .backdrop-cont1{
         display: none;
     }
-  .movie-content-cont-details-cont{
+  /* .movie-content-cont-details-cont{
       background-color: #06d69ee3;
-  }
+  } */
 }
 @media(max-width:608px){
     .production-logo-cont{

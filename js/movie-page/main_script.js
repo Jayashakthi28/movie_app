@@ -7,7 +7,7 @@ const common_det_url = `https://api.themoviedb.org/3/movie/${id}?api_key=6c62b99
 const posters_url = `https://api.themoviedb.org/3/movie/${id}/images?api_key=6c62b994f70846dd9201f6a1f089125e`;
 const videos_url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=6c62b994f70846dd9201f6a1f089125e`;
 const cast_url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=6c62b994f70846dd9201f6a1f089125e`;
-const recom_url= `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=6c62b994f70846dd9201f6a1f089125e`;
+const recom_url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=6c62b994f70846dd9201f6a1f089125e`;
 const nav_elements = document.querySelector(".nav-elements");
 const movie_det = document.querySelector(".movie-content-cont-details-cont");
 const production_logo_cont = document.querySelector(".production-logo-cont");
@@ -17,7 +17,8 @@ const backdrop_cont1 = document.querySelector(".backdrop-cont1 img");
 const utube_video_cont = document.querySelector(".video-cont");
 const movie_poster_cont = document.querySelector(".poster-cont");
 const cast_cont = document.querySelector(".cast-cont");
-const rel_movies_cont=document.querySelector(".related-mov-cont");
+const rel_movies_cont = document.querySelector(".related-mov-cont");
+const main_det_cont=document.querySelector('.main-det-cont');
 async function common_det_fetcher() {
   const data = await fetch(common_det_url);
   const response = await data.json();
@@ -48,11 +49,12 @@ async function common_det_fetcher() {
 async function posters_url_fetcher() {
   const data = await fetch(posters_url);
   const response = await data.json();
-  main_data["backdrops"] = response.backdrops || './assets/522.jpg';
-  main_data["logo"] = response.logos.find(z=>{
-    console.log(z);
-    return z.iso_639_1=="en";
-  }) || '';
+  main_data["backdrops"] = response.backdrops || "./assets/522.jpg";
+  main_data["logo"] =
+    response.logos.find((z) => {
+      console.log(z);
+      return z.iso_639_1 == "en";
+    }) || "";
   main_data["posters"] = response.posters;
   main_data["images"] = response.backdrops.concat(response.posters);
 }
@@ -78,7 +80,6 @@ async function videos_url_fetcher() {
   imgUrlUpdate();
   imgUrlUpdate1();
 }
-
 
 function nav_elements_updater() {
   nav_elements.innerHTML = `
@@ -141,9 +142,15 @@ function nav_elements_updater() {
     });
   }
   production_logo_cont.innerHTML = temp;
-  poster_cont.src = (`https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}` )|| (`./assets/522.jpg`);
-  backdrop_cont.src = (main_data.backdrops.length!==0)?(`https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`):(`./assets/522.jpg`);
-  backdrop_cont1.src = (main_data.backdrops.length!==0)?(`https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}`):(`./assets/522.jpg`);
+  poster_cont.src =
+  main_data.posters.length !== 0?
+    `https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}` :
+    `./assets/522.jpg`;
+  main_det_cont.style.background =
+    main_data.backdrops.length !== 0
+      ? `url('https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}')`
+      : `url('./assets/522.jpg)`;
+  main_det_cont.style.backgroundSize='cover';
   temp = "";
   if (main_data.videos.length !== 0) {
     main_data.videos.forEach((d) => {
@@ -185,46 +192,60 @@ function nav_elements_updater() {
 }
 let count = 0;
 function imgUrlUpdate() {
-  if(main_data.backdrops.length!==0){
-  const imgs = Array.from(document.querySelectorAll(".backdrop-cont-main img"));
-  imgs.forEach((d) => {
-    if (count >= main_data.backdrops.length) {
-      count = 0;
-    }
-    d.src = `https://image.tmdb.org/t/p/original/${main_data.backdrops[count].file_path}`;
-    count++;
-  });
-}
+  if (main_data.backdrops.length !== 0) {
+      if (count >= main_data.backdrops.length) {
+        count = 0;
+      }
+      main_det_cont.style.background = `url('https://image.tmdb.org/t/p/original/${main_data.backdrops[count].file_path}')`;
+      main_det_cont.style.backgroundSize='cover';
+      main_det_cont.style.backgroundRepeat='no-repeat';
+      main_det_cont.style.backgroundPosition='center';
+      count++;
+  }
 }
 let cnt=0;
 function imgUrlUpdate1() {
-  if(main_data.backdrops.length!==0){
-  const imgs = Array.from(document.querySelectorAll(".main-content-cont-poster img"));
-  imgs.forEach((d) => {
-    if (cnt >= main_data.posters.length) {
-      cnt = 0;
-    }
-    d.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
-    cnt++;
-  });
+  if (main_data.posters.length !== 0) {
+      if (cnt >= main_data.posters.length) {
+        cnt = 0;
+      }
+      poster_cont.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
+      cnt++;
+  }
 }
-}
+// let cnt = 0;
+// function imgUrlUpdate1() {
+//   if (main_data.backdrops.length !== 0) {
+//     const imgs = Array.from(
+//       document.querySelectorAll(".main-content-cont-poster img")
+//     );
+//     imgs.forEach((d) => {
+//       if (cnt >= main_data.posters.length) {
+//         cnt = 0;
+//       }
+//       d.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
+//       cnt++;
+//     });
+//   }
+// }
 const id_arr = [];
 async function recom_fetcher() {
-  rel_movies_cont.innerHTML='';
+  rel_movies_cont.innerHTML = "";
   const data1 = await fetch(recom_url);
   const result = [];
   const response = await data1.json();
   result.push(...response.results);
   let card = "";
-  if(result.length===0){
-      rel_movies_cont.style.display='none';
-      Array.from(document.querySelectorAll('.arrow-cont'))[1].style.display='none';
-      Array.from(document.querySelectorAll('.pop-movies-heading'))[1].style.display='none';    
-  }
-  else{
-  result.forEach(d => {
-    card += `<div class="movies-card">
+  if (result.length === 0) {
+    rel_movies_cont.style.display = "none";
+    Array.from(document.querySelectorAll(".arrow-cont"))[1].style.display =
+      "none";
+    Array.from(
+      document.querySelectorAll(".pop-movies-heading")
+    )[1].style.display = "none";
+  } else {
+    result.forEach((d) => {
+      card += `<div class="movies-card">
     <img
       src="https://image.tmdb.org/t/p/original/${d.poster_path}"
       alt=""
@@ -237,29 +258,29 @@ async function recom_fetcher() {
           <button data-id="${d.id}">See More</button>
         </div>
   </div>`;
-  });
-  rel_movies_cont.innerHTML=card;
+    });
+    rel_movies_cont.innerHTML = card;
+  }
 }
-}
-async function caller(){
-await common_det_fetcher();
-await posters_url_fetcher();
-await cast_url_fetcher();
-await videos_url_fetcher();
-await recom_fetcher();
-nav_elements_updater();
-imgUrlUpdate();
-imgUrlUpdate1();
-updater_1( document.querySelectorAll('.hidden-mov-det button'));
+async function caller() {
+  await common_det_fetcher();
+  await posters_url_fetcher();
+  await cast_url_fetcher();
+  await videos_url_fetcher();
+  await recom_fetcher();
+  nav_elements_updater();
+  imgUrlUpdate();
+  imgUrlUpdate1();
+  updater_1(document.querySelectorAll(".hidden-mov-det button"));
 }
 caller();
 setInterval(imgUrlUpdate, 7000);
-setInterval(imgUrlUpdate1,7000);
+setInterval(imgUrlUpdate1, 7000);
 
-function updater_1(button_redirect){
-button_redirect.forEach(d=>{
-  d.addEventListener('click',(e)=>{
-    window.location=`./movie-det.html?id=${d.dataset.id}`;
-  })
-});
+function updater_1(button_redirect) {
+  button_redirect.forEach((d) => {
+    d.addEventListener("click", (e) => {
+      window.location = `./movie-det.html?id=${d.dataset.id}`;
+    });
+  });
 }
