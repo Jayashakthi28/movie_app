@@ -27,13 +27,15 @@
     font-size: 1.5rem;
     padding: 2rem;
 } */
+/* width */
+
 nav{
-    background-color: #233a34a4;
+    background-color:var(--green);
 }
 .main-det-cont{
     display: flex;
     flex-direction: column;
-    background: url("https://image.tmdb.org/t/p/original/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg");
+    background: url('./assets/522.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -133,6 +135,25 @@ nav{
     width: auto;
     overflow: auto;
 }
+.poster-cont::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .poster-cont::-webkit-scrollbar-track {
+    background: var(--blue)
+  }
+  
+  /* Handle */
+  .poster-cont::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 2rem;
+  }
+  
+  /* Handle on hover */
+  .poster-cont::-webkit-scrollbar-thumb:hover {
+    background:var(--green);
+  }
 .video-cont iframe{
     width: 440px;
     margin: 1rem;
