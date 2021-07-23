@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 body,
 *::before,
 *::after,
@@ -5,12 +7,15 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Titillium Web', sans-serif;
 }
 ::placeholder {
   color: black;
   opacity: 0.6; /* Firefox */
 }
-
+h1,h2,h3,h4,h5,.hl{
+  font-family:  'Alegreya Sans SC', sans-serif;
+}
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: black;
