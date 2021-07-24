@@ -154,6 +154,25 @@ nav{
   .poster-cont::-webkit-scrollbar-thumb:hover {
     background:var(--green);
   }
+  .video-cont::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .video-cont::-webkit-scrollbar-track {
+    background: var(--blue)
+  }
+  
+  /* Handle */
+  .video-cont::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 2rem;
+  }
+  
+  /* Handle on hover */
+  .video-cont::-webkit-scrollbar-thumb:hover {
+    background:var(--green);
+  }
 .video-cont iframe{
     width: 440px;
     margin: 1rem;
@@ -298,6 +317,25 @@ nav{
     border-radius: 1px;
     padding: 1px;
     background-color: #ffffff31;
+}
+.load-more-cont{
+    background: url('./assets/522.jpg') center/cover no-repeat;
+    margin: 0.4rem;
+    width: 300px;
+    cursor: pointer;
+}
+.load-more-cont:hover div{
+    background-color: rgba(0, 0, 0, 0.529);
+}
+.load-more-cont div{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.672);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #06D6A0;
 }
 @media (max-width:543px){
     .mini-det-cont{

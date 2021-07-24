@@ -146,6 +146,9 @@ nav {
   background-color: #f17995;
   cursor: pointer;
 }
+.suggestions-cont ul li:hover{
+  background-color: var(--green);
+}
 .input-active{
   width: 100% !important;
 }

@@ -18,7 +18,8 @@ const utube_video_cont = document.querySelector(".video-cont");
 const movie_poster_cont = document.querySelector(".poster-cont");
 const cast_cont = document.querySelector(".cast-cont");
 const rel_movies_cont = document.querySelector(".related-mov-cont");
-const main_det_cont=document.querySelector('.main-det-cont');
+const main_det_cont = document.querySelector(".main-det-cont");
+const load_more = document.querySelector(".load-more-cont");
 async function common_det_fetcher() {
   const data = await fetch(common_det_url);
   const response = await data.json();
@@ -143,14 +144,14 @@ function nav_elements_updater() {
   }
   production_logo_cont.innerHTML = temp;
   poster_cont.src =
-  main_data.posters.length !== 0?
-    `https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}` :
-    `./assets/522.jpg`;
+    main_data.posters.length !== 0
+      ? `https://image.tmdb.org/t/p/original${main_data.posters[0].file_path}`
+      : `./assets/522.jpg`;
   main_det_cont.style.background =
     main_data.backdrops.length !== 0
       ? `url('https://image.tmdb.org/t/p/original${main_data.backdrops[0].file_path}')`
       : `url('./assets/522.jpg)`;
-  main_det_cont.style.backgroundSize='cover';
+  main_det_cont.style.backgroundSize = "cover";
   temp = "";
   if (main_data.videos.length !== 0) {
     main_data.videos.forEach((d) => {
@@ -164,10 +165,29 @@ function nav_elements_updater() {
   if (main_data.images.length === 0) {
     temp += `<div class='no-video-found'>Sorry No Images found 😞</div>`;
   }
-  main_data.images.forEach((d) => {
-    temp += ` <img src="https://image.tmdb.org/t/p/original/${d.file_path}" alt="Poster">`;
-  });
+  // main_data.images.forEach((d) => {
+  //   temp += ` <img src="https://image.tmdb.org/t/p/original/${d.file_path}" alt="Poster">`;
+  // });
+  temp = "";
+  for (i = 0; i < 10; i++) {
+    if (i < main_data.images.length)
+      temp += ` <img src="https://image.tmdb.org/t/p/original/${main_data.images[i].file_path}" alt="Poster">`;
+  }
+  let load_more_flag = 0;
+  if (main_data.images.length > 10) {
+    temp += `<div class='load-more-cont' style="background: url('https://image.tmdb.org/t/p/original/${main_data.images[10].file_path}') center center / cover no-repeat"><div>Load More</div></div>`;
+    load_more_flag = 1;
+  }
   movie_poster_cont.innerHTML = temp;
+  if (load_more_flag === 1) {
+    let tempo='';
+    document.querySelector(".load-more-cont").addEventListener("click", () => {
+      main_data.images.forEach((d) => {
+        tempo += ` <img src="https://image.tmdb.org/t/p/original/${d.file_path}" alt="Poster">`;
+      });
+      movie_poster_cont.innerHTML = tempo;
+    })
+  }
   temp = "";
   main_data.cast.forEach((d) => {
     temp += ` <div class="movies-card">
@@ -193,24 +213,24 @@ function nav_elements_updater() {
 let count = 0;
 function imgUrlUpdate() {
   if (main_data.backdrops.length !== 0) {
-      if (count >= main_data.backdrops.length) {
-        count = 0;
-      }
-      main_det_cont.style.background = `url('https://image.tmdb.org/t/p/original/${main_data.backdrops[count].file_path}')`;
-      main_det_cont.style.backgroundSize='cover';
-      main_det_cont.style.backgroundRepeat='no-repeat';
-      main_det_cont.style.backgroundPosition='center';
-      count++;
+    if (count >= main_data.backdrops.length) {
+      count = 0;
+    }
+    main_det_cont.style.background = `url('https://image.tmdb.org/t/p/original/${main_data.backdrops[count].file_path}')`;
+    main_det_cont.style.backgroundSize = "cover";
+    main_det_cont.style.backgroundRepeat = "no-repeat";
+    main_det_cont.style.backgroundPosition = "center";
+    count++;
   }
 }
-let cnt=0;
+let cnt = 0;
 function imgUrlUpdate1() {
   if (main_data.posters.length !== 0) {
-      if (cnt >= main_data.posters.length) {
-        cnt = 0;
-      }
-      poster_cont.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
-      cnt++;
+    if (cnt >= main_data.posters.length) {
+      cnt = 0;
+    }
+    poster_cont.src = `https://image.tmdb.org/t/p/original/${main_data.posters[cnt].file_path}`;
+    cnt++;
   }
 }
 // let cnt = 0;
