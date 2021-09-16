@@ -246,6 +246,61 @@ nav {
 .hl{
   color: var(--dark-blue);
 }
+
+
+footer{
+  margin-top: 2rem;
+  display: flex;
+  background-color: var(--green);
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+footer .logo_txt{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  flex: 1;
+  flex-wrap: nowrap;
+  min-width: 200px;
+  margin: 0.5rem;
+}
+
+.logo_txt div{
+  font-family:  'Alegreya Sans SC', sans-serif;
+  font-weight: 700;
+}
+
+.logo_txt .logos_wrapper{
+  margin-top: 0.5rem;
+}
+
+.logos_wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.logos_wrapper a{
+  margin: 0 1rem;
+}
+
+.logo_txt a img{
+  width: 40px;
+  transition: all 0.5s ease;
+}
+
+.logo_txt a img:hover{
+  transform: translateY(10px);
+}
+
+.logo_txt:nth-child(2) div{
+  white-space: nowrap;
+}
+
 @media (min-width: 401px){
   .close-btn{
     display: none !important;
@@ -267,3 +322,13 @@ nav {
     width: 100%;
   }
 }
+
+/* @media (max-width:975px){
+  footer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo_txt{
+    margin: 0.5rem;
+  }
+} */

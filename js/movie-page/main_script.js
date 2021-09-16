@@ -46,6 +46,7 @@ async function common_det_fetcher() {
   main_data["original_title"] = response.original_title;
   main_data["rating"] = response.vote_average;
   main_data["language"] = response.spoken_languages[0].english_name;
+  document.querySelector('title').textContent=main_data['title'];
 }
 async function posters_url_fetcher() {
   const data = await fetch(posters_url);
